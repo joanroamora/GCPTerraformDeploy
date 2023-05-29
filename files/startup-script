@@ -1,3 +1,9 @@
 #! /bin/bash
 
+mkdir movieAnalyst && cd movieAnalyst
 touch joan.txt
+apt update
+apt -y upgrade
+apt install git
+apt install nodejs npm
+git clone https://github.com/juan-ruiz/movie-analyst-ui.git
