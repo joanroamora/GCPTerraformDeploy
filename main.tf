@@ -37,13 +37,20 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  network_interface {
-    network = google_compute_network.vpc-movie-a1-1.name
-    subnetwork = google_compute_subnetwork.subnet-movie-a1-1.name
+  network {
+						
+			subnetwork = google_compute_subnetwork.subnet-movie-a1-1.name
+			network_interface {
+    			network = google_compute_network.vpc-movie-a1-1.name
+			}
+
+		}
+  # network_interface {
+  #   network = google_compute_network.vpc-movie-a1-1.name
+  #   subnetwork = google_compute_subnetwork.subnet-movie-a1-1.name
     # access_config {
     #   // Ephemeral public IP
     # }
-  }
-
+  #}
 
 }
