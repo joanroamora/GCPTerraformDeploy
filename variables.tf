@@ -6,3 +6,7 @@ variable "subnet-a1-1_cidr" {
 variable "disk-a1-1-size" {
   default = 10
 }
+
+# variable "subnet-movie-a1-1-subnet" {
+#   default = 10
+# }

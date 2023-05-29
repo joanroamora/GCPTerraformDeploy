@@ -19,6 +19,7 @@ resource "google_compute_subnetwork" "subnet-movie-a1-1" {
   stack_type            = "IPV4_ONLY"
   network               = google_compute_network.vpc-movie-a1-1.name
   project                 = "movie-a1-terraform111"
+  
 }
 
 resource "google_compute_instance" "default" {
@@ -26,6 +27,11 @@ resource "google_compute_instance" "default" {
   machine_type = "e2-standard-2"
   zone         = "us-central1-a"
   project      = "movie-a1-terraform111"
+
+  metadata = {
+    startup-script        = "${file("./files/startup-script")}"
+    #startup-script-custom = file("${path.module}/files/startup-script")
+  }
 
   boot_disk {
     initialize_params {
@@ -37,20 +43,20 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  network {
+  # network {
 						
-			subnetwork = google_compute_subnetwork.subnet-movie-a1-1.name
-			network_interface {
-    			network = google_compute_network.vpc-movie-a1-1.name
-			}
+	# 		subnetwork = google_compute_subnetwork.subnet-movie-a1-1.name
+	# 		network_interface {
+  #   			network = google_compute_network.vpc-movie-a1-1.name
+	# 		}
 
-		}
-  # network_interface {
-  #   network = google_compute_network.vpc-movie-a1-1.name
-  #   subnetwork = google_compute_subnetwork.subnet-movie-a1-1.name
-    # access_config {
-    #   // Ephemeral public IP
-    # }
-  #}
+	# 	}
+  network_interface {
+    network = google_compute_network.vpc-movie-a1-1.self_link
+    subnetwork = google_compute_subnetwork.subnet-movie-a1-1.self_link
+    access_config {
+      // Ephemeral public IP
+    }
+  }
 
 }
