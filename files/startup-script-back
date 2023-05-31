@@ -1,0 +1,11 @@
+#! /bin/bash
+
+mkdir movieAnalyst && cd movieAnalyst
+touch BACKjoan.txt
+# apt update
+# apt -y upgrade
+# apt install -y git
+# apt install -y nodejs npm
+# git clone https://github.com/juan-ruiz/movie-analyst-ui.git
+# cd movie-analyst-ui
+# npm install

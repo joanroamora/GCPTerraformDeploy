@@ -10,3 +10,11 @@ variable "disk-a1-1-size" {
 # variable "subnet-movie-a1-1-subnet" {
 #   default = 10
 # }
+
+variable "subnet-a1-2_cidr-back" {
+  default = "10.0.1.0/24"
+}
+
+variable "disk-a1-1-size-back" {
+  default = 10
+}

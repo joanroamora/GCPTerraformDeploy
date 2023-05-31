@@ -33,7 +33,7 @@ resource "google_compute_firewall" "movie-front-firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "8080", "22", "1000-2000"]
+    ports    = ["80", "8080", "22", "3030", "3000", "1000-2000"]
   }
 
   source_tags = ["web"]
@@ -48,10 +48,7 @@ resource "google_compute_instance" "default" {
   zone         = "us-central1-a"
   project      = "movie-a1-terraform111"
 
-  metadata = {
-    startup-script        = "${file("./files/startup-script")}"
-    #startup-script-custom = file("${path.module}/files/startup-script")
-  }
+  metadata_startup_script = "${file("./files/startup-script")}"
 
   boot_disk {
     initialize_params {
