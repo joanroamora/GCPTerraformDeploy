@@ -7,5 +7,6 @@ apt install -y nodejs npm
 git clone https://github.com/juan-ruiz/movie-analyst-api.git
 cd movie-analyst-api
 touch adentroPapi.txt
-#sudo npm -y install
+sudo npm -y install
+PORT=3000 nodejs server.js
 #nodejs server.js
