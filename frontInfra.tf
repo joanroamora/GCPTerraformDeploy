@@ -4,7 +4,7 @@ provider "google" {
 }
 
 resource "google_compute_network" "vpc-movie-a1-1" {
-  project                 = "movie-a1-terraform111"
+  project                 = var.project_name
   name                    = "vpc-movie-a1-1"
   auto_create_subnetworks = false
   
@@ -14,18 +14,17 @@ resource "google_compute_subnetwork" "subnet-movie-a1-1" {
   name                  = "subnet-movie-a1-1"
   ip_cidr_range         = "${var.subnet-a1-1_cidr}"
   region                = "us-central1"
-  #zone                  = "us-central1-a"
   private_ip_google_access = true
   stack_type            = "IPV4_ONLY"
-  network               = google_compute_network.vpc-movie-a1-1.name
-  project                 = "movie-a1-terraform111"
+  network               = var.network_name
+  project                 = var.project_name
   
 }
 
 resource "google_compute_firewall" "movie-front-firewall" {
   name                    = "movie-front-firewall"
-  network                 = google_compute_network.vpc-movie-a1-1.name
-  project                 = "movie-a1-terraform111"
+  network                 = var.network_name
+  project                 = var.project_name
 
   allow {
     protocol = "icmp"
@@ -46,8 +45,7 @@ resource "google_compute_instance" "default" {
   name         = "vm-movie-a1-1"
   machine_type = "e2-standard-2"
   zone         = "us-central1-a"
-  project      = "movie-a1-terraform111"
-
+  project      = var.project_name
   metadata_startup_script = "${file("./files/startup-script")}"
 
   boot_disk {
@@ -73,4 +71,29 @@ resource "google_compute_instance" "default" {
     }
   }
 
+}
+
+ ## Create Cloud Router
+
+resource "google_compute_router" "movie-router-1" {
+  project = var.project_name
+  name    = "movie-router-1"
+  network = var.network_name
+  region  = "us-central1"
+}
+
+## Create Nat Gateway
+
+resource "google_compute_router_nat" "movie-nat-1" {
+  project                            = var.project_name
+  name                               = "my-router-nat"
+  router                             = google_compute_router.movie-router-1.name
+  region                             = "us-central1"
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+
+  log_config {
+    enable = true
+    filter = "ERRORS_ONLY"
+  }
 }
