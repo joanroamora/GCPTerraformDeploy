@@ -1,0 +1,13 @@
+#! /bin/bash
+
+mkdir movieAnalystDB && cd movieAnalystDB
+touch DBjoan.txt
+#apt install -y git
+#apt install -y nodejs npm
+#Pendiente revisar la configuracion de la instancia de datos.
+
+#Instalacion MySql
+apt install -y mariadb-server
+#importar datos o verificar ubicacion
+#crear base de datos
+#pushear el sql file

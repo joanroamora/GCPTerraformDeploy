@@ -22,3 +22,7 @@ variable "subnet-a1-2_cidr-back" {
 variable "disk-a1-1-size-back" {
   default = 10
 }
+
+variable "subnet-a1-2_cidr-db" {
+  default = "10.0.2.0/24"
+}
