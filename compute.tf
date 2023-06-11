@@ -70,9 +70,9 @@ resource "google_compute_instance" "default-db" {
   zone         = "us-central1-a"
   project      = var.project_name
 
-#   metadata = {
-#     startup-script        = "${file("./files/startup-script-db")}"
-#   }
+  metadata = {
+    startup-script        = "${file("./files/startup-script-db")}"
+  }
 
   boot_disk {
     initialize_params {
@@ -91,10 +91,20 @@ resource "google_compute_instance" "default-db" {
   network_interface {
     network = google_compute_network.vpc-movie-a1-1.self_link
     subnetwork = google_compute_subnetwork.subnet-movie-a1-1-db.self_link
+    access_config {
+      // Ephemeral public IP
+    }
   }
-
+/* 
   provisioner "file" {
-    source      = "/home/cassius/Desktop/REPOSITORIOS LOCALES/PORTFOLIO/3.GCPTerraformDeploy/codigo/files/table.sql"
-    destination = "/table.sql"
+  source      = "/home/cassius/Desktop/REPOSITORIOS LOCALES/PORTFOLIO/3.GCPTerraformDeploy/codigo/files"
+    destination = "/boot"
+
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = ""
+    host     = "vm-movie-a1-1-db"
   }
+ } */
 }

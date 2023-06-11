@@ -1,6 +1,8 @@
 provider "google" {
-  region      = "us-central1"
-  zone                  = "us-central1-a"
+  project                 = var.project_name
+  region                  = "us-central1"
+  zone                    = "us-central1-a"
+  credentials             = file("${var.credentials}")
 }
 
 resource "google_compute_network" "vpc-movie-a1-1" {

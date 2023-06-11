@@ -1,6 +1,10 @@
 #Setting project variable
 variable "project_name" {
-  default = "movie-a1-terraform111"
+  default = "movie-a1-terraform1111"
+}
+
+variable "credentials" {
+  default = "/home/cassius/Downloads/terraformCredentials/movie-a1-terraform1111-6c324e632b85.json"
 }
 
 variable "network_name" {

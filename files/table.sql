@@ -5,10 +5,10 @@ CREATE TABLE movie_db.moviereview (title VARCHAR(255) PRIMARY KEY, `release` VAR
 
 INSERT INTO movie_db.publication (name, avatar) VALUES ('The Daily Reviewer', 'glyphicon-eye-open');
 INSERT INTO movie_db.publication (name, avatar) VALUES ('International Movie Critic', 'glyphicon-fire');
-INSERT INTO movie_db.publication (name, avatar) VALUES ('MoviesNow', 'glyphicon-time');
+INSERT INTO movie_db.publication (name, avatar) VALUES ('MoviesNow', 'glyphicon-film');
 INSERT INTO movie_db.publication (name, avatar) VALUES ('MyNextReview', 'glyphicon-record');
 INSERT INTO movie_db.publication (name, avatar) VALUES ('Movies n\' Games', 'glyphicon-heart-empty');
-INSERT INTO movie_db.publication (name, avatar) VALUES ('TheOne', 'glyphicon-globe');
+INSERT INTO movie_db.publication (name, avatar) VALUES ('TheOne', 'glyphicon-film');
 INSERT INTO movie_db.publication (name, avatar) VALUES ('ComicBookHero.com', 'glyphicon-flash');
 
 INSERT INTO movie_db.reviewer (name, avatar, publication) VALUES ('Robert Smith','https://s3.amazonaws.com/uifaces/faces/twitter/angelcolberg/128.jpg','The Daily Reviewer');

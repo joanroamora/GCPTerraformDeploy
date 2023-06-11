@@ -1,5 +1,6 @@
 #! /bin/bash
-
+apt update
+apt upgrade
 mkdir movieAnalystDB && cd movieAnalystDB
 touch DBjoan.txt
 #apt install -y git
@@ -8,6 +9,8 @@ touch DBjoan.txt
 
 #Instalacion MySql
 apt install -y mariadb-server
+gsutil cp gs://movie-analyst-bucket-standar01/table.sql .
+mysql -u root < table.sql 
 #importar datos o verificar ubicacion
 #crear base de datos
 #pushear el sql file
